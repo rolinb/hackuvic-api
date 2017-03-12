@@ -31,7 +31,12 @@ var router = express.Router();
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
-	    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:80');
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:80');
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 	console.log('Something is happening.');
 	next();
 });
