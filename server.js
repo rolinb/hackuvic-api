@@ -19,8 +19,8 @@ var port     = process.env.PORT || 8080; // set our port
 var mongoose   = require('mongoose');
 //mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
 mongoose.connect('mongodb://localhost/mongodb');
-var Bear     = require('./app/models/bear');
-var Cards    = require('./app/models/cards')
+//var Bear     = require('./app/models/bear');
+var Card    = require('./app/models/cards')
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -42,70 +42,70 @@ router.get('/', function(req, res) {
 
 // on routes that end in /bears
 // ----------------------------------------------------
-router.route('/bears')
+router.route('/cards')
 
-	// create a bear (accessed at POST http://localhost:8080/bears)
+	// create a card (accessed at POST http://localhost:8080/cards)
 	.post(function(req, res) {
 
-		var bear = new Bear();		// create a new instance of the Bear model
-		bear.name = req.body.name;  // set the bears name (comes from the request)
+		var card = new Card();		// create a new instance of the Card model
+		card.name = req.body.name;  // set the cards name (comes from the request)
 
-		bear.save(function(err) {
+		card.save(function(err) {
 			if (err)
 				res.send(err);
 
-			res.json({ message: 'Bear created!' });
+			res.json({ message: 'Card created!' });
 		});
 
 
 	})
 
-	// get all the bears (accessed at GET http://localhost:8080/api/bears)
+	// get all the cards (accessed at GET http://localhost:8080/api/cards)
 	.get(function(req, res) {
-		Bear.find(function(err, bears) {
+		Card.find(function(err, cards) {
 			if (err)
 				res.send(err);
 
-			res.json(bears);
+			res.json(cards);
 		});
 	});
 
-// on routes that end in /bears/:bear_id
+// on routes that end in /cards/:card_id
 // ----------------------------------------------------
-router.route('/bears/:bear_id')
+router.route('/cards/:card_id')
 
-	// get the bear with that id
+	// get the card with that id
 	.get(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Card.findById(req.params.card_id, function(err, card) {
 			if (err)
 				res.send(err);
-			res.json(bear);
+			res.json(card);
 		});
 	})
 
-	// update the bear with this id
+	// update the card with this id
 	.put(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Card.findById(req.params.card_id, function(err, card) {
 
 			if (err)
 				res.send(err);
 
-			bear.name = req.body.name;
-			bear.save(function(err) {
+			card.name = req.body.name;
+			card.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: 'Bear updated!' });
+				res.json({ message: 'Card updated!' });
 			});
 
 		});
 	})
 
-	// delete the bear with this id
+	// delete the card with this id
 	.delete(function(req, res) {
-		Bear.remove({
-			_id: req.params.bear_id
-		}, function(err, bear) {
+		Card.remove({
+			_id: req.params.card_id
+		}, function(err, card) {
 			if (err)
 				res.send(err);
 
