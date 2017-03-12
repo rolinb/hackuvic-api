@@ -51,8 +51,8 @@ router.route('/cards')
 		//card.name = req.body.name;  // set the cards name (comes from the request)
 		card.user_id = req.body.user_id;
 		card.card = req.body.card;
-		card.card.question = req.body.card[0].question;
-		card.card.answer = req.body.card[0].answer;
+		card.cards.question = req.body.cards.question;
+		card.cards.answer = req.body.cards.answer;
 
 		card.save(function(err) {
 			if (err)
@@ -117,7 +117,17 @@ router.route('/cards/:card_id')
 		});
 	});
 
+	router.route('/cards/:user_id')
 
+		// get the card with that id
+		.get(function(req, res) {
+			Card.find({user_id: req.params.user_id}, function(err, card) {
+				if (err)
+					res.send(err);
+				res.json(card);
+			});
+		})
+});
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
 
