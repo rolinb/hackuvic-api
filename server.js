@@ -78,8 +78,16 @@ router.route('/cards')
 // ----------------------------------------------------
 router.route('/cards/:card_id')
 
+
+.get(function(req, res) {
+	Card.find({user_id: req.params.user_id}, function(err, card) {
+		if (err)
+			res.send(err);
+		res.json(card);
+	});
+})
 	// get the card with that id
-	.get(function(req, res) {
+	/*.get(function(req, res) {
 		Card.findById(req.params.card_id, function(err, card) {
 			if (err)
 				res.send(err);
@@ -116,17 +124,11 @@ router.route('/cards/:card_id')
 			res.json({ message: 'Successfully deleted' });
 		});
 	});
-
-	router.route('/cards/:user_id')
+*/
+	//router.route('/cards/:user_id')
 
 		// get the card with that id
-		.get(function(req, res) {
-			Card.find({user_id: req.params.user_id}, function(err, card) {
-				if (err)
-					res.send(err);
-				res.json(card);
-			});
-		})
+
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
