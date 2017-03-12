@@ -66,7 +66,7 @@ router.route('/cards')
 
 	// get all the cards (accessed at GET http://localhost:8080/api/cards)
 	.get(function(req, res) {
-		Card.find(function(err, cards) {
+		Card.find(req.query, function(err, cards) {
 			if (err)
 				res.send(err);
 
