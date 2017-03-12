@@ -48,7 +48,11 @@ router.route('/cards')
 	.post(function(req, res) {
 
 		var card = new Card();		// create a new instance of the Card model
-		card.name = req.body.name;  // set the cards name (comes from the request)
+		//card.name = req.body.name;  // set the cards name (comes from the request)
+		card.user_id = req.body.user_id;
+		card.card = req.body.card;
+		card.card.question = req.body.card.question;
+		card.card.answer = req.body.card.answer;
 
 		card.save(function(err) {
 			if (err)
