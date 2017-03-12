@@ -50,9 +50,8 @@ router.route('/cards')
 		var card = new Card();		// create a new instance of the Card model
 		//card.name = req.body.name;  // set the cards name (comes from the request)
 		card.user_id = req.body.user_id;
-		card.card = req.body.card;
-		card.cards.question = req.body.cards.question;
-		card.cards.answer = req.body.cards.answer;
+		card.question = req.body.question;
+		card.answer = req.body.answer;
 
 		card.save(function(err) {
 			if (err)
