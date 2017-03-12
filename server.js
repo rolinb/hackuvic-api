@@ -51,8 +51,8 @@ router.route('/cards')
 		//card.name = req.body.name;  // set the cards name (comes from the request)
 		card.user_id = req.body.user_id;
 		card.card = req.body.card;
-		card.card.question = req.body.card.question;
-		card.card.answer = req.body.card.answer;
+		card.card.question = req.body.card[0].question;
+		card.card.answer = req.body.card[0].answer;
 
 		card.save(function(err) {
 			if (err)
