@@ -127,7 +127,7 @@ router.route('/cards/:card_id')
 				res.json(card);
 			});
 		})
-});
+
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
 
